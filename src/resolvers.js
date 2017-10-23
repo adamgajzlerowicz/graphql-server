@@ -1,12 +1,15 @@
 import {PubSub} from 'graphql-subscriptions';
+import moment from 'moment';
+
 
 let lunch = {
-    lunchAt: '00000',
+    lunchAt: moment().hour(12).minutes(0).seconds(0),
     oneOFive: 'MAYBE',
     oneOThree: 'MAYBE'
 };
 
 const LUNCH_UPDATED = 'lunchUpdated';
+
 const pubsub = new PubSub();
 
 export const resolvers = {
