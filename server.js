@@ -24,7 +24,7 @@ server.use('/graphql', bodyParser.json(), graphqlExpress({
 
 server.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',
-  subscriptionsEndpoint: `ws://0.0.0.0:${PORT}/subscriptions`
+  subscriptionsEndpoint: `ws://localhost:${PORT}/subscriptions`
 }));
 
 const ws = createServer(server);
