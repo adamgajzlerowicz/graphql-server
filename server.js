@@ -16,7 +16,8 @@ import { SubscriptionServer } from 'subscriptions-transport-ws';
 const PORT = 4000;
 const server = express();
 
-server.use('*', cors({ origin: 'http://localhost:3000' }));
+// server.use('*', cors({ origin: 'http://localhost:3000' }));
+server.use('*', cors());
 
 server.use('/graphql', bodyParser.json(), graphqlExpress({
   schema
