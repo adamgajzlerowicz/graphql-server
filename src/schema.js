@@ -18,6 +18,7 @@ type Query {
 
 type Mutation {
   updateLunch(lunchAt: String, oneOFive: String, oneOThree: String): Lunch
+  notify(lunchAt: String, oneOFive: String, oneOThree: String): Lunch
 }
 
 type Subscription {
