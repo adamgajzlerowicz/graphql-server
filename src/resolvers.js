@@ -14,10 +14,6 @@ let lunch = {
     oneOThree: 'MAYBE'
 };
 
-notify({
-    oneOFive: 'YES',
-    oneOThree: 'NO'
-});
 
 const LUNCH_UPDATED = 'lunchUpdated';
 

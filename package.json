@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon ./server.js --exec babel-node -e js"
+    "start": "NODE_ENV=development nodemon ./server.js --exec babel-node -e js"
   },
   "license": "MIT",
   "devDependencies": {
