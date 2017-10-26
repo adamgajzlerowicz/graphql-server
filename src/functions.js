@@ -24,41 +24,50 @@ const colorPicker = (state) => {
     }
 };
 
+
 const notify = ({lunchAt, oneOThree, oneOFive}) => {
     const text = `
     \n\n\n\n Na obiad idziemy o godzinie ${moment(lunchAt).format("HH:mm:ss")} 
     \n\n\n.
     `;
-    const content = {
-        'text': text,
-        'username': 'Bill Lumbergh',
-        "attachments": [
-            {
-                "text": `Pokoj 103 jest ${translate(oneOThree)}gotowy do jedzenia.`,
-                "color": colorPicker(oneOThree),
-                "attachment_type": "default",
-            },
-            {
-                "text": `Pokoj 105 jest ${translate(oneOFive)}gotowy do jedzenia.`,
-                "color": colorPicker(oneOFive),
-                "attachment_type": "default",
-            },
-            {
-                "text": `<http://oktorejjestobiad.pl|http://oktorejjestobiad.pl>`,
-                "attachment_type": "default",
-            }
-        ]
-    };
 
-    fetch('https://hooks.slack.com/services/' + config.slack, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(content)
-    });
+    const giphy = () => {
+        fetch("http://api.giphy.com/v1/gifs/random?q=food&api_key=" + config.giphy)
+            .then(data => data.json())
+            .then(json => {
+                return json.data.image_url
+            }).then(image => fetch('https://hooks.slack.com/services/' + config.slack, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'text': text,
+                'username': 'Bill Lumbergh',
+                "attachments": [
+                    {
+                        "text": `Pokoj 103 jest ${translate(oneOThree)}gotowy do jedzenia.`,
+                        "color": colorPicker(oneOThree),
+                        "attachment_type": "default",
+                    },
+                    {
+                        "text": `Pokoj 105 jest ${translate(oneOFive)}gotowy do jedzenia.`,
+                        "color": colorPicker(oneOFive),
+                        "attachment_type": "default",
+                    },
+                    {
+                        "text": `<http://oktorejjestobiad.pl|http://oktorejjestobiad.pl>`,
+                        "attachment_type": "image",
+                        "image_url": image
+                    }
+                ]
+            })
+        }))
+    };
+    giphy();
 };
+notify({})
 
 
 export {
