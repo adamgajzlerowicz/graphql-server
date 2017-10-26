@@ -5,19 +5,19 @@ import config from '../.env.json';
 const translate = (state) => {
     switch (state) {
         case 'YES':
-            return 'nie';
+            return 'nie ';
         case 'NO':
             return '';
         default:
-            return 'być może';
+            return 'być może ';
     }
 };
 
 const colorPicker = (state) => {
     switch (state) {
-        case 'YES':
-            return '#5cb85c';
         case 'NO':
+            return '#5cb85c';
+        case 'YES':
             return '#d43f3a';
         default:
             return '#5bc0de';
@@ -26,7 +26,7 @@ const colorPicker = (state) => {
 
 const notify = ({lunchAt, oneOThree, oneOFive}) => {
     const text = `
-=================
+    .
     \n\n\n\n Na obiad idziemy o godzinie ${moment(lunchAt).format("HH:mm:ss")} 
     \n\n\n.
     `;
@@ -35,12 +35,12 @@ const notify = ({lunchAt, oneOThree, oneOFive}) => {
         'username': 'Bill Lumbergh',
         "attachments": [
             {
-                "text": `Pokoj 103 jest ${translate(oneOThree)} gotowy do jedzenia.`,
+                "text": `Pokoj 103 jest ${translate(oneOThree)}gotowy do jedzenia.`,
                 "color": colorPicker(oneOThree),
                 "attachment_type": "default",
             },
             {
-                "text": `Pokoj 105 jest ${translate(oneOFive)} gotowy do jedzenia.`,
+                "text": `Pokoj 105 jest ${translate(oneOFive)}gotowy do jedzenia.`,
                 "color": colorPicker(oneOFive),
                 "attachment_type": "default",
             },

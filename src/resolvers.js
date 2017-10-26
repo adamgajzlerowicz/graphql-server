@@ -14,7 +14,10 @@ let lunch = {
     oneOThree: 'MAYBE'
 };
 
-notify('dupa');
+notify({
+    oneOFive: 'YES',
+    oneOThree: 'NO'
+});
 
 const LUNCH_UPDATED = 'lunchUpdated';
 
