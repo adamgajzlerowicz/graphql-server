@@ -4,9 +4,9 @@ import config from '../.env.json';
 
 const translate = (state) => {
     switch (state) {
-        case 'YES':
-            return 'nie ';
         case 'NO':
+            return 'nie ';
+        case 'YES':
             return '';
         default:
             return 'być może ';
@@ -15,9 +15,9 @@ const translate = (state) => {
 
 const colorPicker = (state) => {
     switch (state) {
-        case 'NO':
-            return '#5cb85c';
         case 'YES':
+            return '#5cb85c';
+        case 'NO':
             return '#d43f3a';
         default:
             return '#5bc0de';
@@ -26,7 +26,6 @@ const colorPicker = (state) => {
 
 const notify = ({lunchAt, oneOThree, oneOFive}) => {
     const text = `
-    .
     \n\n\n\n Na obiad idziemy o godzinie ${moment(lunchAt).format("HH:mm:ss")} 
     \n\n\n.
     `;
