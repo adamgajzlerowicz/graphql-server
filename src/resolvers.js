@@ -1,10 +1,5 @@
 import {PubSub} from 'graphql-subscriptions';
 import moment from 'moment';
-// import {
-//     GraphQLString,
-//     GraphQLObjectType,
-//     GraphQLSchema
-// } from 'graphql';
 
 import {notify} from "./functions";
 
@@ -14,11 +9,9 @@ let lunch = {
     oneOThree: 'MAYBE'
 };
 
-
 const LUNCH_UPDATED = 'lunchUpdated';
 
 const pubsub = new PubSub();
-
 
 export const resolvers = {
     Query: {
@@ -32,7 +25,7 @@ export const resolvers = {
             pubsub.publish(LUNCH_UPDATED, {lunchUpdated: args});
             return lunch;
         },
-        notify: () =>{
+        notify: () => {
             notify(lunch);
             return lunch;
         }
@@ -44,35 +37,3 @@ export const resolvers = {
     }
 };
 
-// const lunchType = new GraphQLObjectType({
-//     name: 'lunch',
-//     fields: {
-//         lunchAt: {
-//             type: new GraphQLString,
-//             resolve(data) {
-//                 return data.lunchAt;
-//             }
-//         },
-//         oneOThree: {
-//             type: new GraphQLString,
-//             resolve(data) {
-//                 return data.oneOThree;
-//             }
-//         },
-//         oneOFive: {
-//             type: new GraphQLString,
-//             resolve(data) {
-//                 return data.oneOFive;
-//             }
-//         },
-// });
-//
-// export const resolver = new GraphQLSchema({
-//     query: {
-//         lunch: new GraphQLObjectType({
-//             type: lunchType
-//         })
-//     },
-//     mutation: new GraphQLObjectType({}),
-//     subscription: new GraphQLObjectType({})
-// });

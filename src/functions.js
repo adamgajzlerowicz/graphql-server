@@ -24,19 +24,21 @@ const colorPicker = (state) => {
     }
 };
 
+const giphy = (word) => {
+    return new Promise(res => {
+        fetch("http://api.giphy.com/v1/gifs/random?tag=" + word + "&rating=r&api_key=" + config.giphy)
+            .then(data => data.json())
+            .then(json => json.data.fixed_height_downsampled_url).then(image => res(image))
+    })
+};
 
-const notify = ({lunchAt, oneOThree, oneOFive}) => {
-    const text = `
+const slackNotify = ({lunchAt, oneOThree, oneOFive}, image) => {
+    const text = ` 
     \n\n\n\n Na obiad idziemy o godzinie ${moment(lunchAt).format("HH:mm:ss")} 
     \n\n\n.
     `;
-
-    const giphy = () => {
-        fetch("http://api.giphy.com/v1/gifs/random?q=food&api_key=" + config.giphy)
-            .then(data => data.json())
-            .then(json => {
-                return json.data.image_url
-            }).then(image => fetch('https://hooks.slack.com/services/' + config.slack, {
+    return new Promise(res => {
+        fetch('https://hooks.slack.com/services/' + config.slack, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -63,12 +65,26 @@ const notify = ({lunchAt, oneOThree, oneOFive}) => {
                     }
                 ]
             })
-        }))
-    };
-    giphy();
+        })
+    })
 };
-notify({})
 
+
+// const getSynonim = () => {
+//     return new Promise(res => {
+//         fetch("http://words.bighugelabs.com/api/2/" + config.the + "/food/json")
+//             .then(data => data.json())
+//             .then(json => res(json.noun.syn[Math.floor(Math.random() * json.noun.syn.length)]));
+//     })
+// };
+
+async function notify(payload) {
+    // const word = await getSynonim();
+    const image = await giphy('food');
+    slackNotify(payload, image);
+}
+
+notify({});
 
 export {
     notify
