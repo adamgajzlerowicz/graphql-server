@@ -83,8 +83,6 @@ async function notify(payload) {
     slackNotify(payload, image);
 }
 
-notify({});
-
 export {
     notify
 };
