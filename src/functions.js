@@ -79,7 +79,6 @@ const slackNotify = ({lunchAt, oneOThree, oneOFive}, image) => {
 // };
 
 async function notify(payload) {
-    // const word = await getSynonim();
     const image = await giphy('food');
     slackNotify(payload, image);
 }
