@@ -63,15 +63,6 @@ const slackNotify = ({lunchAt, oneOThree, oneOFive}, image) => {
     }))
 };
 
-
-// const getSynonim = () => {
-//     return new Promise(res => {
-//         fetch("http://words.bighugelabs.com/api/2/" + config.the + "/food/json")
-//             .then(data => data.json())
-//             .then(json => res(json.noun.syn[Math.floor(Math.random() * json.noun.syn.length)]));
-//     })
-// };
-
 async function notify(payload) {
     const image = await giphy('food');
     slackNotify(payload, image);
