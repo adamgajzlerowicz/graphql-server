@@ -44,12 +44,12 @@ const slackNotify = ({lunchAt, oneOThree, oneOFive}, image) => {
             'username': 'Bill Lumbergh',
             "attachments": [
                 {
-                    "text": `Pokoj 103 jest ${translate(oneOThree)}gotowy do jedzenia.`,
+                    "text": `Pokoj 111 jest ${translate(oneOThree)}gotowy do jedzenia.`,
                     "color": colorPicker(oneOThree),
                     "attachment_type": "default",
                 },
                 {
-                    "text": `Pokoj 105 jest ${translate(oneOFive)}gotowy do jedzenia.`,
+                    "text": `Pokoj 114 jest ${translate(oneOFive)}gotowy do jedzenia.`,
                     "color": colorPicker(oneOFive),
                     "attachment_type": "default",
                 },
